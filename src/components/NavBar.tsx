@@ -4,8 +4,8 @@ import { buttonVariants } from "./ui/button";
 import { ArrowRight } from "lucide-react";
 
 const NavBar = () => {
-  const user = true;
-  const isAdmin = true;
+  const user = undefined;
+  const isAdmin = undefined;
   return (
     <nav className="sticky  z-[100] h-14 inset-x-0 top-0 w-full border-b border-gray-200 bg-white/75 backdrop-blur-lg transition-all">
       <MaxWidthWrapper>
@@ -14,22 +14,29 @@ const NavBar = () => {
             case <span className="text-green-600">Cobra</span>
           </Link>
           <div className="h-full flex items-center space-x-4">
-            {!user ? (
+            {user ? (
               <>
                 <Link
                   href="/api/auth/register"
                   className={buttonVariants({ size: "sm", variant: "ghost" })}
                 >
-                  Sign up
+                  Sign out
                 </Link>
 
-                <Link
-                  href="/api/auth/login"
-                  className={buttonVariants({ size: "sm", variant: "ghost" })}
-                >
-                  Login
-                </Link>
-                <div className="h-8 w-px bg-zinc-200 hidden sm:block" ></div>
+                {isAdmin ? (
+                  <>
+                    <Link
+                      href="/"
+                      className={buttonVariants({
+                        size: "sm",
+                        variant: "ghost",
+                      })}
+                    >
+                      Dashboard ✨
+                    </Link>
+                  </>
+                ) : null}
+
                 <Link
                   href="/configure/upload"
                   className={buttonVariants({ size: "sm", variant: "ghost" })}
@@ -40,35 +47,38 @@ const NavBar = () => {
               </>
             ) : (
               <>
-                 {isAdmin ? (
-              <>
                 <Link
-                  href="/"
-                  className={buttonVariants({ size: "sm", variant: "ghost" })}
+                  href="/api/auth/register"
+                  className={buttonVariants({
+                    size: "sm",
+                    variant: "ghost",
+                  })}
                 >
-                  Dashboard ✨
+                  Sign up
                 </Link>
-              </>
-            ) : null}
+
+                <Link
+                  href="/api/auth/login"
+                  className={buttonVariants({
+                    size: "sm",
+                    variant: "ghost",
+                  })}
+                >
+                  Login
+                </Link>
+                <div className="h-8 w-px bg-zinc-200 hidden sm:block" />
                 <Link
                   href="/configure/upload"
-                  className={buttonVariants({ size: "sm", variant: "ghost" })}
+                  className={buttonVariants({
+                    size: "sm",
+                    className: "hidden sm:flex items-center gap-1",
+                  })}
                 >
-                  Create Case
+                  Create case
                   <ArrowRight className="ml-1.5 h-5 w-5" />
                 </Link>
-                <Link
-                  href="/"
-                  className={buttonVariants({ size: "sm", variant: "ghost" })}
-                >
-                  Sign out
-                </Link> 
               </>
             )}
-
-         
-
-          
           </div>
         </div>
       </MaxWidthWrapper>
