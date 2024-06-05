@@ -25,19 +25,16 @@ const Steps = () => {
   const pathname = usePathname();
 
   console.log("=========");
-  {        console.log(STEPS,'======')}  
+ 
   return (
     <div>
       <ol className="rounded-md lg:border-r lg:border-gray-200">
-
-        
         {STEPS.map((step, i) => {
           const isCurrent = pathname.endsWith(step.url);
           const isCompleted = STEPS.slice(i + 1).some((step) => {
             pathname.endsWith(step.url);
           });
-          const imgPath = `/snake-${i + 1}.png`;
-console.log(imgPath,'=====');
+
 
           return (
             <li key={step.name} className="relative overflow-hidden lg:flex-1">
@@ -87,10 +84,8 @@ console.log(imgPath,'=====');
             </li>
           );
         })}
-      </ol><>
-       </>
-
-      
+      </ol>
+      <></>
     </div>
   );
 };
