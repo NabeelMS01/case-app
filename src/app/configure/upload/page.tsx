@@ -6,7 +6,7 @@ import { useUploadThing } from "@/lib/uploadthing";
 import { cn } from "@/lib/utils";
 import { Image, Loader2, MousePointerSquareDashed } from "lucide-react"; 
 import { useRouter } from "next/navigation";
-import { useState, useTransition } from "react";
+import { useEffect, useState, useTransition } from "react";
 import Dropzone, { FileRejection } from "react-dropzone";
 
 const Page = () => {
@@ -44,7 +44,12 @@ setIsDragOver(false)
 
   };
 
+
   const isUploading = uploadProgress;
+  useEffect(() => {
+   
+  }, [ uploadProgress]);
+
   const [isPending, startTransition] = useTransition();
   return (
     <div
@@ -91,6 +96,9 @@ setIsDragOver(false)
                         value={uploadProgress}
                         className="mt-2  w-40 h-2 bg-gray-300"
                       />
+                      <span className="text-xs font-semibold mt-1 ">
+                        {uploadProgress} %
+                      </span>
                     </div>
                   ) : isPending ? (
                     <div className="flex flex-col items-center">
