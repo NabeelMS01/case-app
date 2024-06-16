@@ -11,7 +11,7 @@ const DesignPreview = ({ configuration }: { configuration: Configuration }) => {
 
   const { color, model } = configuration;
 
-  useEffect(() => setShowConfetti(true));
+  useEffect(() => setShowConfetti(true), []);
 
   const tw = COLORS?.find(
     (supportedColor) => supportedColor?.value === color
@@ -20,11 +20,12 @@ const DesignPreview = ({ configuration }: { configuration: Configuration }) => {
   const { label: modelLabel } = MODELS.options.find(
     ({ value }) => value === model
   )!;
+
   return (
     <>
       <div
         aria-hidden={true}
-        className="pointer-events-none select-none absolute inset-0 overflow-hidden  flex justify-center"
+        className="pointer-events-none select-none absolute inset-0 overflow-hidden flex justify-center"
       >
         <Confetti
           active={showConfetti}
@@ -42,15 +43,15 @@ const DesignPreview = ({ configuration }: { configuration: Configuration }) => {
           }}
         />
       </div>
-      <div className="  mt-20 grid grid-cols-2 text-sm sm:grid-cols-12 sm:grid-rows-1 sm:gap-x-6  md:gap-x-8 lg:gap-x-12">
-        <div className=" col-span-2 items-center w-2/4 sm:w-full md:w-full sm:col-span-4 md:col-span-3 md:row-span-2 md:row-end-2 ">
+      <div className="mt-20 grid grid-cols-1 text-sm sm:grid-cols-12 sm:grid-rows-1 sm:gap-x-6 md:gap-x-8 lg:gap-x-12">
+        <div className="col-span-1 flex justify-center   items-center  sm:col-span-4 md:col-span-3 md:row-span-2 md:row-end-2">
           <Phone
-            className={cn(`bg-${tw}`)}
+            className={cn(`bg-${tw}  w-1/2 sm:w-full md:w-full lg:w-full xl:w-full`)}
             imgSrc={configuration?.croppedImageUrl!}
           />
         </div>
-        <div className="mt-6 sm:col-span-9 sm:mt-0 md:row-end-1 text-center ">
-          <h3 className="text-3xl font-bold  tracking-tight text-gray-800">
+        <div className="mt-6 sm:col-span-8 sm:mt-0 md:row-end-1 text-center">
+          <h3 className="text-3xl font-bold tracking-tight text-gray-800">
             Your {modelLabel} Case
           </h3>
         </div>
