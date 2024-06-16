@@ -3,8 +3,9 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
-import { Toaster } from "@/components/ui/toaster";
-
+import { Toaster } from "@/components/ui/toaster"; 
+import setupLocatorUI from "@locator/runtime";
+import Providers from "@/components/Providers";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -17,12 +18,23 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
+
+
+
+  if (process.env.NODE_ENV !== "production") {
+    setupLocatorUI(); 
+  }
   return (
     <html lang="en">
       <body className={inter.className}>
         <NavBar />
         <main className="flex flex-col min-h-[calc(100vh-3.5rem-1px)]">
-          <div className="flex-1 flex flex-col h-full">{children}</div>
+          <div className="flex-1 flex flex-col h-full">
+            <Providers>
+            {children}
+            </Providers>
+          </div>
           <Footer />
         </main>
         <Toaster/>
