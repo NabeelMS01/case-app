@@ -6,8 +6,7 @@ import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 
 const NavBar = async () => {
   const {getUser} = getKindeServerSession()
-  const user = await getUser();
-  console.log(user);
+  const user = await getUser(); 
   
   const isAdmin = user?.email===process.env.ADMIN_EMAIL;
   return (

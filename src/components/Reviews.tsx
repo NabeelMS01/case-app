@@ -103,8 +103,7 @@ function ReviewGrid() {
   const columns = splitArray(PHONES, 3);
   const column1 = columns[0];
   const column2 = columns[1];
-  const column3 = splitArray(columns[2], 2);
-  console.log(columns, "====");
+  const column3 = splitArray(columns[2], 2); 
 
   return (
     <div

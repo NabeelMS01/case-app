@@ -10,12 +10,12 @@ const STEPS = [
     url: "/upload",
   },
   {
-    name: "Step 2 :Customize design",
+    name: "Step 2 : Customize design",
     description: "Make the case yours",
     url: "/design",
   },
   {
-    name: "Step 3 :Summery",
+    name: "Step 3 : Summery",
     description: "Rivew your final design",
     url: "/preview",
   },

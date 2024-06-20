@@ -1,6 +1,6 @@
 "use client";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
-import { cn } from "@/lib/utils";
+import { cn, formatPrice } from "@/lib/utils";
 import NextImage from "next/image";
 import { Rnd } from "react-rnd";
 import HandleComponent from "./HandleComponent";
@@ -21,7 +21,7 @@ import {
   DropdownMenuContent,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Check, ChevronsUpDown } from "lucide-react";
+import { ArrowRight, Check, ChevronsUpDown, Loader2 } from "lucide-react";
 import { BASE_PRICE } from "@/config/products";
 import { useUploadThing } from "@/lib/uploadthing";
 import { useToast } from "@/components/ui/use-toast";
@@ -40,7 +40,7 @@ const DesignConfigurator = ({
 }: DesignConfiguratorProps) => {
   const { toast } = useToast();
   const router = useRouter();
-  const { mutate: saveConfig, isPending } = useMutation({
+  const { mutate: saveConfig, isPending,isSuccess, } = useMutation({
     mutationKey: ["save-config"],
     mutationFn: async (args: SaveConfigArgs) => {
       await Promise.all([saveConfiguration(), _saveConfig(args)]);
@@ -215,7 +215,7 @@ const DesignConfigurator = ({
             aria-hidden="true"
             className="absolute z-10 inset-x-0 bottom-0 h-12 bg-gradient-to-t from-white pointer-events-none"
           />
-          <div className="px-8 pb-12 pt-8">
+          <div className="px-8 pb-12 pt-8" >
             <h2 className="tracking-tight font-bold  text-3xl ">
               Cusomize your case
             </h2>
@@ -223,6 +223,7 @@ const DesignConfigurator = ({
             <div className="relative mt-4 h-full flex flex-col justify-between">
               <div className="flex flex-col gap-6">
                 <RadioGroup
+                
                   value={options.color}
                   onChange={(val) => {
                     setOptions((prevs) => ({
@@ -236,6 +237,7 @@ const DesignConfigurator = ({
                   <div className="mt-3 flex items-center space-x-3">
                     {COLORS.map((color) => (
                       <RadioGroup.Option
+                      disabled ={isPending}
                         key={color.label}
                         value={color}
                         className={({ active, checked }) =>
@@ -259,9 +261,9 @@ const DesignConfigurator = ({
                 </RadioGroup>
                 <div className="relative flex flex-col gap-3 w-full">
                   <Label>Model</Label>
-                  <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                      <Button
+                  <DropdownMenu  >
+                    <DropdownMenuTrigger disabled ={isPending} asChild>
+                      <Button 
                         variant={"outline"}
                         role="combobox"
                         className="w-full justify-between"
@@ -270,9 +272,10 @@ const DesignConfigurator = ({
                         <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50 " />
                       </Button>
                     </DropdownMenuTrigger>
-                    <DropdownMenuContent className="w-screen-sm">
+                    <DropdownMenuContent  className="w-screen-sm">
                       {MODELS.options.map((model) => (
                         <DropdownMenuItem
+                        disabled ={isPending}
                           key={model.label}
                           className={cn(
                             "flex text-sm gap-1 items-center p-1.5 cursor-default hover:bg-zinc-100",
@@ -289,6 +292,7 @@ const DesignConfigurator = ({
                           }
                         >
                           <Check
+                          
                             className={cn(
                               "mr-2 h-4 w-4",
                               model.label === options.model.label
@@ -305,6 +309,7 @@ const DesignConfigurator = ({
                 {[MATERIALS, FINISHES].map(
                   ({ name, options: selectableOptions }) => (
                     <RadioGroup
+                    disabled ={isPending}
                       key={name}
                       value={options[name]}
                       onChange={(val) => {
@@ -358,7 +363,7 @@ const DesignConfigurator = ({
                               }
                             >
                               <span className="font-medium text-gray-900">
-                                ₹ {option.price}
+                              {formatPrice(option.price /100)}
                               </span>
                             </RadioGroup.Description>
                           </RadioGroup.Option>
@@ -376,7 +381,7 @@ const DesignConfigurator = ({
           <div className="w-full h-full flex justify-end items-center">
             <div className="w-full flex gap-6 items-center">
               <p className="font-medium whitespace-nowrap">
-                ₹ {BASE_PRICE + options.finish.price + options.material.price}
+                 {formatPrice((BASE_PRICE + options.finish.price + options.material.price) /100)}
               </p>
               <Button
                 size={"sm"}
@@ -390,9 +395,10 @@ const DesignConfigurator = ({
                     model: options.model.value,
                   })
                 }
+                disabled={isPending}
               >
-                Continue
-                <ArrowRight className="h-4 w-4 ml-1.5 inline" />
+            {  !isPending? <>Continue <ArrowRight className="h-4 w-4 ml-1.5 inline" /> </> : <Loader2 className="animate-spin h-5 w-5 text-white" />}
+                
               </Button>
             </div>
           </div>
