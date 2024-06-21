@@ -1,5 +1,4 @@
 import { cn } from "@/lib/utils";
-import Image from "next/image";
 import { HTMLAttributes } from "react";
 
 interface PhoneProps extends HTMLAttributes<HTMLElement> {
@@ -16,8 +15,8 @@ const Phone = ({ imgSrc, className, dark, ...props }: PhoneProps) => {
       )}
       {...props}
     >
-      <Image
-        src= {
+      <img
+        src={
           dark
             ? "/phone-template-dark-edges.png"
             : "/phone-template-white-edges.png"
@@ -26,7 +25,7 @@ const Phone = ({ imgSrc, className, dark, ...props }: PhoneProps) => {
         alt=""
       />
       <div className="absolute -z-10 inset-0">
-        <Image className="object-cover min-w-full min-h-full" src={imgSrc} alt="overlaying phone" />
+        <img className="object-cover min-w-full min-h-full" src={imgSrc} alt="overlaying phone" />
       </div>
     </div>
   );

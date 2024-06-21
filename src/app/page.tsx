@@ -15,7 +15,7 @@ export default function Home() {
           <div className="col-span-2 px-6 lg:px-0 lg:pt-4">
             <div className="relative mx-auto text-center lg:text-left flex flex-col items-center lg:items-start">
               <div className=" w-28  left-0 -top-20 sm:-top-20  hidden md:hidden xl:hidden sm:block">
-                <Image src="/snake-1.png" className="w-full" alt="" />
+                <img src="/snake-1.png" className="w-full" alt="" />
               </div>
               <h1 className="relative w-fit tracking-tight text-balance mt-16 font-bold !leading-tight text-gray-900 text-3xl  md:text-6xl lg:text-7xl">
                 Your Image on a{" "}
@@ -44,28 +44,28 @@ export default function Home() {
               </ul>
               <div className="mt-12 flex flex-col sm:flex-row items-center sm:items-start gap-5">
                 <div className="flex -space-x-4">
-                  <Image
+                  <img
                     src="/users/user-1.png"
                     alt=""
                     className="inline-block h-10 w-10 rounded-full ring-2 ring-slate-100"
                   />
 
-                  <Image
+                  <img
                     src="/users/user-2.png"
                     alt=""
                     className="inline-block h-10 w-10 rounded-full ring-2 ring-slate-100"
                   />
-                  <Image
+                  <img
                     src="/users/user-3.png"
                     alt=""
                     className="inline-block h-10 w-10 rounded-full ring-2 ring-slate-100"
                   />
-                  <Image
+                  <img
                     src="/users/user-4.jpg"
                     alt=""
                     className="inline-block h-10 w-10 rounded-full ring-2 ring-slate-100"
                   />
-                  <Image
+                  <img
                     src="/users/user-5.jpg"
                     alt=""
                     className="inline-block h-10 w-10 rounded-full ring-2 ring-slate-100"
@@ -88,12 +88,12 @@ export default function Home() {
           </div>
           <div className="col-span-full lg:col-span-1 w-full flex justify-center px-8 sm:px-16 md:px-0 mt-32 lg:mx-0 lg:mt-20 h-fit">
             <div className="relative  md:max-w-xl">
-              <Image
+              <img
                 src="/your-image.png"
                 alt=""
                 className="absolute  z-50 w-40 lg:w-52 left-56 -top-20 select-none "
               />
-              <Image
+              <img
                 src="/line.png"
                 alt=""
                 className="absolute w-28  select-none  -left-10  -bottom-8  lg:-left-10  lg:-bottom-10 lg:w-40  "
@@ -117,7 +117,7 @@ export default function Home() {
               </span>
               say
             </h2>
-            <Image
+            <img
               src="/snake-2.png"
               alt=""
               className=" w-24 order-0 lg:order-2"
@@ -144,7 +144,7 @@ export default function Home() {
                 </p>
               </div>
               <div className="flex gap-4 mt-2">
-                <Image
+                <img
                   className="rounded-full h-12 w-12 object-cover"
                   src="/users/user-1.png"
                   alt=""
@@ -183,7 +183,7 @@ export default function Home() {
                 </p>
               </div>
               <div className="flex gap-4 mt-2">
-                <Image
+                <img
                   className="rounded-full h-12 w-12 object-cover"
                   src="/users/user-2.png"
                   alt=""
@@ -219,13 +219,13 @@ export default function Home() {
           </div>
           <div className="mx-auto max-w-6xl px-6 lg:px-8">
             <div className="relative flex flex-col items-center md:grid grid-cols-2 gap-40">
-              <Image
+              <img
                 src="/arrow.png"
                 className="absolute top-[25rem] md:top-1/2 -translate-y-1/2 z-10 left-1/2 -translate-x-1/2 rotate-90 md:rotate-0"
                 alt=""
               />
               <div className="relative h-80 md:h-full w-full md:justify-self-end max-w-sm rounded-xl bg-gray-900/5 ring-inset ring-gray-900/10 lg:rounded-2xl">
-                <Image
+                <img
                   src="/horse.jpg"
                   className="rounded-md object-cover bg-white shadow-2xl ring-1 ring-gray-900/10 h-full w-full"
                   alt=""
