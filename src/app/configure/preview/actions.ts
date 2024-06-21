@@ -36,9 +36,8 @@ export const createCheckoutSession = async ({
 
   let order: Order | undefined = undefined;
 
-  console.log("====",user,'====',new Date());
+  console.log("====", user, "====", new Date());
 
-  
   const existingOrder = await db.order?.findFirst({
     where: { userId: user?.id, configurationId: configuration?.id },
   });
@@ -51,17 +50,10 @@ export const createCheckoutSession = async ({
         amount: price,
         userId: user.id,
         configurationId: configuration.id,
-
       },
     });
   }
-
-
-console.log(price,'========priceprice');
-
-
   const product = await stripe.products.create({
-  
     name: "Custom Iphone Case",
     images: [configuration.imageUrl],
     default_price_data: {
@@ -71,17 +63,17 @@ console.log(price,'========priceprice');
   });
 
   const stripeSession = await stripe.checkout.sessions.create({
-    success_url:`${process.env.NEXT_PUBLIC_SERVER_URL}/thank-you?orderId=${order.id}`,
-    cancel_url:`${process.env.NEXT_PUBLIC_SERVER_URL}/configure/preview?id=${configuration.id}`,
-    payment_method_types:['card'],
-    shipping_address_collection:{allowed_countries:['US']},
-    mode:'payment',
-    metadata:{
-      userId:user.id,
-      orderId:order.id
+    success_url: `${process.env.NEXT_PUBLIC_SERVER_URL}/thank-you?orderId=${order.id}`,
+    cancel_url: `${process.env.NEXT_PUBLIC_SERVER_URL}/configure/preview?id=${configuration.id}`,
+    payment_method_types: ["card"],
+    shipping_address_collection: { allowed_countries: ["US"] },
+    mode: "payment",
+    metadata: {
+      userId: user.id,
+      orderId: order.id,
     },
-    line_items:[{price:product.default_price as string ,quantity:1}]
-  })
+    line_items: [{ price: product.default_price as string, quantity: 1 }],
+  });
 
-  return {url :stripeSession.url}
+  return { url: stripeSession.url };
 };
