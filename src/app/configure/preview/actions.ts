@@ -35,8 +35,7 @@ export const createCheckoutSession = async ({
   if (material === "metal") price += PRODUCT_PRICES.material.metal;
 
   let order: Order | undefined = undefined;
-
-  console.log("====", user, "====", new Date());
+ 
 
   const existingOrder = await db.order?.findFirst({
     where: { userId: user?.id, configurationId: configuration?.id },
@@ -47,7 +46,7 @@ export const createCheckoutSession = async ({
   } else {
     order = await db.order.create({
       data: {
-        amount: price,
+        amount: price/100,
         userId: user.id,
         configurationId: configuration.id,
       },
