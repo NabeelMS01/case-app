@@ -15,7 +15,7 @@ import { useRouter } from "next/navigation";
 
 const Label_map: Record<keyof typeof OrderStatus, string> = {
   awaiting_shipment: "Awaiting Shipment",
-  fullfilled: "Fulfilled",
+  fulfilled: "Fulfilled",
   shipped: "Shipped",
 };
 
