@@ -56,7 +56,7 @@ const Page = () => {
         }
       )}
     >
-      <div className="relative flex flex-1 flex-col items-center justify-center w-full">
+      <div className="relative flex flex-1 flex-col items-center justify-center w-full" >
         <Dropzone
           onDropRejected={onDropRejected}
           onDropAccepted={onDropAccepted}
@@ -67,6 +67,8 @@ const Page = () => {
           }}
           onDragEnter={() => setIsDragOver(true)}
           onDragLeave={() => setIsDragOver(false)}
+        
+           
         >
           {({ getRootProps, getInputProps }) => (
             <div

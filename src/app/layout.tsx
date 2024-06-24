@@ -6,14 +6,12 @@ import Footer from "@/components/Footer";
 import { Toaster } from "@/components/ui/toaster"; 
 import setupLocatorUI from "@locator/runtime";
 import Providers from "@/components/Providers";
+import { cunstructMetaData } from "@/lib/utils";
 const googleFont = Roboto_Flex({ subsets: ["latin"] });
 
 
 
-export const metadata: Metadata = {
-  title: "Case Cobra",
-  description: "",
-};
+export const metadata: Metadata = cunstructMetaData()
 
 export default function RootLayout({
   children,
