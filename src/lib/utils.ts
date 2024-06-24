@@ -51,5 +51,6 @@ export function cunstructMetaData({
       images: [image],
       creator: "@NabeelMS01",
     },
+    metadataBase:new URL("https://case-app-dev.vercel.app")
   };
 }
