@@ -213,7 +213,7 @@ export default function Home() {
                 <span className="relative px-2 bg-green-600 text-white ">
                   your own case
                 </span>
-                say
+                
               </h2>
             </div>
           </div>
